@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
 import ColorBox from './components/ColorBox';
 
 const SOLARIZED_COLORS = [
@@ -22,7 +22,7 @@ const SOLARIZED_COLORS = [
 ];
 
 const App = () => (
-  <SafeAreaView>
+  <>
     <View style={styles.container}>
       <Text style={styles.text}>Solarized color scheme</Text>
     </View>
@@ -33,7 +33,7 @@ const App = () => (
         <ColorBox name={item.name} hexValue={item.hexValue} />
       )}
     />
-  </SafeAreaView>
+  </>
 );
 
 const styles = StyleSheet.create({
