@@ -12,12 +12,12 @@ const Home = ({ navigation }) => (
         <PalettePreview
           name={item.paletteName}
           colors={item.colors.slice(0, 5)}
-          onPress={() =>
+          onPress={() => {
             navigation.navigate('ColorPalette', {
               name: item.paletteName,
               colors: item.colors,
-            })
-          }
+            });
+          }}
         />
       )}
     />

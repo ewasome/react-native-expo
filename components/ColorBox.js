@@ -1,18 +1,20 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const ColorBox = ({ name, hexValue }) => {
+const ColorBox = ({ name, hexValue, onPress }) => {
   const lowContrast = parseInt(hexValue.replace('#', ''), 16) > 0xffffff / 1.1;
   const textColor = {
     color: lowContrast ? '#333' : '#fff',
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: hexValue }]}>
-      <Text style={[styles.text, textColor]}>
-        {name}: {hexValue}
-      </Text>
-    </View>
+    <TouchableOpacity onPress={onPress}>
+      <View style={[styles.container, { backgroundColor: hexValue }]}>
+        <Text style={[styles.text, textColor]}>
+          {name}: {hexValue}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
