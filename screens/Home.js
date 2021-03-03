@@ -7,7 +7,7 @@ const Home = ({ navigation }) => (
   <View style={styles.container}>
     <FlatList
       data={COLOR_PALETTES}
-      keyExtractor={(palette) => palette.name}
+      keyExtractor={(palette) => palette.paletteName}
       renderItem={({ item }) => (
         <PalettePreview
           name={item.paletteName}
