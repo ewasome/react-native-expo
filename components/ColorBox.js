@@ -23,6 +23,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 4,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    elevation: 2, // android only
   },
   text: {
     fontWeight: 'bold',
