@@ -3,9 +3,9 @@ import {
   View,
   FlatList,
   StyleSheet,
-  RefreshControl,
   Button,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 
 import { getColorPalletesApiUrl } from '../config';
@@ -47,10 +47,13 @@ const Home = ({ navigation }) => {
           <Button onPress={getPalettes} title="try again" color="#841584" />
         </View>
       )}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('AddNewPalette')}
+      >
+        <Text style={styles.buttonText}>Add new scheme</Text>
+      </TouchableOpacity>
       <FlatList
-        refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={getPalettes} />
-        }
         data={palletes}
         keyExtractor={(palette) => palette.paletteName}
         renderItem={({ item }) => (
@@ -65,6 +68,8 @@ const Home = ({ navigation }) => {
             }}
           />
         )}
+        refreshing={isLoading}
+        onRefresh={getPalettes}
       />
     </View>
   );
@@ -72,9 +77,20 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 10,
     paddingVertical: 10,
+  },
+  button: {
+    height: 50,
+    padding: 10,
+  },
+  buttonText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
   },
 });
 
