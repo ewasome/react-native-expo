@@ -30,6 +30,7 @@ const ColorPalette = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    flex: 1,
   },
   header: {
     marginBottom: 20,
