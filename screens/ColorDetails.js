@@ -1,15 +1,26 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { mapColorDetails } from '../utils/colorDetails';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  ActivityIndicator,
+} from 'react-native';
+
+import { getColorFormatesApiUrl } from '../config';
+import { mapColorDetails } from '../utils';
 
 const ColorBoxDetails = ({ route }) => {
-  const { hexValue } = route.params;
   const [isLoading, setIsLoading] = useState(false);
   const [details, setDetails] = useState({});
   const [isError, setIsError] = useState(false);
+
+  const { hexValue } = route.params;
+
   const getDetails = useCallback(async () => {
+    setIsError(false);
     setIsLoading(true);
-    const url = `http://thecolorapi.com/id?hex=${hexValue.replace('#', '')}`;
+    const url = `${getColorFormatesApiUrl()}?hex=${hexValue.replace('#', '')}`;
 
     try {
       const response = await fetch(url);
@@ -17,8 +28,9 @@ const ColorBoxDetails = ({ route }) => {
       setDetails(mapColorDetails(data));
     } catch (error) {
       setIsError(true);
-      console.error(error);
+      console.log(error);
     }
+
     setIsLoading(false);
   }, [hexValue]);
 
@@ -28,7 +40,7 @@ const ColorBoxDetails = ({ route }) => {
 
   return (
     <View style={[styles.container]}>
-      {isLoading && <Text>Please wait...</Text>}
+      {isLoading && <ActivityIndicator size="large" color="#333" />}
       {isError && !isLoading && (
         <View style={[styles.container]}>
           <Text style={[styles.text]}>Error occured</Text>
